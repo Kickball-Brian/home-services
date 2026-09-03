@@ -1,0 +1,30 @@
+---
+layout: layouts/base.liquid
+pageHeading: "Page Not Found"
+title: "Page Not Found | 911 Cancer Lawsuit"
+description: "The page you requested could not be found. Return to the 911 Cancer Lawsuit homepage to request your free case review."
+permalink: "/404.html"
+bodyClass: "is-utility"
+---
+<section class="utility-hero">
+  <div class="container">
+    <h1>{{ pageHeading }}</h1>
+  </div>
+</section>
+<section class="section section--padded">
+  <div class="container narrow">
+    <div class="notfound-card">
+      <div class="notfound-card_icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M12 21a9 9 0 100-18 9 9 0 000 18z"/></svg>
+      </div>
+      <p class="notfound-card_code">404</p>
+      <h2>We Couldn't Find That Page</h2>
+      <p>The page you're looking for may have been moved or no longer exists. Your free case review is still available from the homepage.</p>
+      <a href="/" class="button button--lg button--gold">Return to the Homepage</a>
+      <p class="notfound-card_lead">Or call us directly:</p>
+      <a class="thankyou-phone" href="tel:+1{{ site.defaultPhone }}" data-dynamic-phone-tel>
+        <span data-dynamic-phone>{{ site.defaultPhoneFormatted }}</span>
+      </a>
+    </div>
+  </div>
+</section>

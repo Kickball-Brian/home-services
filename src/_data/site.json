@@ -1,0 +1,16 @@
+{
+  "name": "911 Cancer Lawsuit",
+  "legalName": "911 Cancer Lawsuit",
+  "url": "https://staging.911cancerlawsuit.com/",
+  "productionUrl": "https://911cancerlawsuit.com/",
+  "description": "If you lived, worked, or served in the New York City disaster area after September 11, 2001 and have since been diagnosed with cancer, you may have legal rights. Free case review. No obligation.",
+  "email": "info@lawlogic.com",
+  "defaultPhone": "8882025895",
+  "defaultPhoneFormatted": "888-202-5895",
+  "address": {
+    "addressCountry": "US"
+  },
+  "areaServed": "United States",
+  "indexable": true,
+  "gtmId": "PF4V3LBK"
+}

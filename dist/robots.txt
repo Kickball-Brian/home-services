@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://911cancerlawsuit.com/sitemap.xml
+Sitemap: https://contractorlogic.com/sitemap.xml

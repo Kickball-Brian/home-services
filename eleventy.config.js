@@ -1,8 +1,9 @@
 /**
- * Eleventy config — 911CancerLawsuit.com.
+ * Eleventy config — ContractorLogic.
  *
  * Source:        src/
  *   _data/       — global JSON data (site, faqs)
+ *   robots.txt.liquid, sitemap.xml.liquid — generated from site.json and the page list
  *   _includes/   — layouts, partials
  *   *.liquid     — page templates
  * Output:        dist/
@@ -21,8 +22,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("favicon.svg");
   eleventyConfig.addPassthroughCopy("apple-touch-icon.png");
   eleventyConfig.addPassthroughCopy("site.webmanifest");
-  eleventyConfig.addPassthroughCopy("robots.txt");
-  eleventyConfig.addPassthroughCopy("sitemap.xml");
 
   // Vue 3 global build — copy from node_modules into dist/js/
   eleventyConfig.addPassthroughCopy({

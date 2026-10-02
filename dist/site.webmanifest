@@ -1,10 +1,10 @@
 {
-  "name": "911 Cancer Lawsuit",
-  "short_name": "911CancerLawsuit",
+  "name": "ContractorLogic",
+  "short_name": "ContractorLogic",
   "icons": [
     { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
   ],
-  "theme_color": "#1B2A6B",
-  "background_color": "#0B1D3A",
+  "theme_color": "#4F7A33",
+  "background_color": "#14160E",
   "display": "standalone"
 }

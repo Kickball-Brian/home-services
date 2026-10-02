@@ -7,14 +7,14 @@
   'use strict';
 
   var CONFIG = {
-    default: { raw: '8882025895', formatted: '888-202-5895' },
+    default: { raw: '8005550199', formatted: '800-555-0199' },
     landingPages: {
-      '/': { raw: '8882025895', formatted: '888-202-5895' }
+      '/': { raw: '8005550199', formatted: '800-555-0199' }
     },
     forceDefaultOn: ['/thank-you']
   };
 
-  var STORAGE_KEY = 'wtc_first_touch_path';
+  var STORAGE_KEY = 'contractorlogic_first_touch_path';
   var firstTouch;
   try {
     firstTouch = sessionStorage.getItem(STORAGE_KEY);

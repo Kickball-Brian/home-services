@@ -1,4 +1,4 @@
-# Netlify config — 911CancerLawsuit.com
+# Netlify config — ContractorLogic
 
 [build]
   command = "npm run build"

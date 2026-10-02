@@ -1,0 +1,11 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for entry in collections.all %}
+  {%- assign entryPath = entry.url | slice: 1, 300 %}
+  <url><loc>{{ site.productionUrl }}{{ entryPath }}</loc></url>
+{%- endfor %}
+</urlset>

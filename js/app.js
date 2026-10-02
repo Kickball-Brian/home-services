@@ -1,11 +1,5 @@
 /**
- * Depo Claim Center — Vue 3 app + scroll reveal
- *
- * Eligibility checker uses the exact 4 qualifying criteria:
- *  1. Used Depo-Provera between 1992–2019
- *  2. Used it for at least 1 year (4+ shots)
- *  3. Diagnosed with a meningioma (brain tumor)
- *  4. Not currently represented by another law firm
+ * ContractorLogic — Vue 3 app + scroll reveal + homepage hero widgets
  */
 
 (function () {
@@ -92,6 +86,47 @@
     });
   }
 
+  // ── Hero service picker ────────────────────────────
+  function initServicePicker() {
+    var pills = document.querySelectorAll('.service-pill');
+    if (!pills.length) return;
+
+    pills.forEach(function (pill) {
+      pill.addEventListener('click', function () {
+        pills.forEach(function (p) { p.classList.remove('active'); });
+        pill.classList.add('active');
+      });
+    });
+  }
+
+  // ── Services grid (multi-select) ───────────────────
+  function initServiceCards() {
+    document.querySelectorAll('.service-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        var on = card.getAttribute('aria-pressed') === 'true';
+        card.setAttribute('aria-pressed', on ? 'false' : 'true');
+      });
+    });
+  }
+
+  // ── Hero ZIP lookup ─────────────────────────────────
+  function initZipForm() {
+    var btn   = document.querySelector('.zip-btn');
+    var input = document.querySelector('.zip-input');
+    if (!btn || !input) return;
+
+    btn.addEventListener('click', function () {
+      var zip = input.value.trim();
+      if (!/^\d{5}$/.test(zip)) {
+        input.setAttribute('aria-invalid', 'true');
+        input.focus();
+        return;
+      }
+      input.removeAttribute('aria-invalid');
+      // TODO: wire to lead-routing endpoint once available.
+    });
+  }
+
   // ── FAQ accordion (Vue) ───────────────────────────
   function mountFaqApp() {
     var el = document.getElementById('faq-app');
@@ -138,6 +173,9 @@
     initScrollReveal();
     initStatCounters();
     initLLFormProgress();
+    initServicePicker();
+    initServiceCards();
+    initZipForm();
     mountFaqApp();
   }
 

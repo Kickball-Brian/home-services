@@ -2047,3 +2047,25 @@ p.lead { font-size: 1.05rem; color: var(--c-muted); line-height: 1.7; }
   #ccpa-page .legal-body-inner { max-width: 1200px; }
   #ccpa-page #ll-form { min-width: 1140px; }
 }
+
+/* ── Long-form legal text (privacy, terms) ───────── */
+.legal-prose {
+  padding: 48px 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #374151;
+}
+.legal-prose h2 {
+  font-size: 1.35rem;
+  color: var(--c-dark);
+  margin: 2.25rem 0 .75rem;
+}
+.legal-prose h2:first-child { margin-top: 0; }
+.legal-prose h3 {
+  font-size: 1.1rem;
+  color: var(--c-dark);
+  margin: 1.5rem 0 .5rem;
+}
+.legal-prose p { margin: 0 0 1rem; }
+.legal-prose a { color: var(--c-dark); text-decoration: underline; }
+.legal-prose a:hover { opacity: .7; }

@@ -5,4 +5,4 @@ eleventyExcludeFromCollections: true
 User-agent: *
 {% if site.indexable %}Allow: /{% else %}Disallow: /{% endif %}
 
-Sitemap: {{ site.productionUrl }}sitemap.xml
+{% unless site.staging %}Sitemap: {{ site.productionUrl }}sitemap.xml{% endunless %}

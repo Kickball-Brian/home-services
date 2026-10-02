@@ -13,7 +13,7 @@
 
   <title>{{ _t }}</title>
   <meta name="description" content="{{ _d }}">
-  <meta name="robots" content="{% if site.indexable %}{{ _robots }}{% else %}noindex, nofollow{% endif %}">
+  <meta name="robots" content="{% if site.staging %}noindex, follow{% elsif site.indexable %}{{ _robots }}{% else %}noindex, nofollow{% endif %}">
   <link rel="canonical" href="{{ _canonical }}">
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">

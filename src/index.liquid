@@ -39,6 +39,7 @@ bodyClass: "is-home"
 
     <div class="hero-card">
       <h3>Get Your Free Quotes Today</h3>
+      <div class="hero-card-start">
       <p>Enter your ZIP code and choose a service to get matched instantly.</p>
       <div class="zip-input-group">
         <input class="zip-input" type="text" inputmode="numeric" placeholder="Enter ZIP Code" maxlength="5">
@@ -59,6 +60,14 @@ bodyClass: "is-home"
         <button class="service-pill" type="button">Water Damage</button>
         <button class="service-pill" type="button">Windows</button>
       </div>
+      <p class="zip-error" id="zip-error" role="alert" hidden>Please enter a 5-digit ZIP code.</p>
+      </div>
+
+      <div class="hero-card-form" hidden>
+        <button class="hero-card-back" type="button">&larr; Change ZIP or service</button>
+        <div id="ll-form"></div>
+      </div>
+
       <div class="hero-card-footer">
         <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         No spam. No obligation. We protect your privacy.
@@ -66,6 +75,8 @@ bodyClass: "is-home"
     </div>
   </div>
 </section>
+
+<script src="/form.min.js"></script>
 
 {% comment %} ── Services ticker ── {% endcomment %}
 {% assign tickerItems = "Kitchen Remodel,Pest Control,Roofing,Siding,Solar Energy,Water Damage,Windows,Bathroom Remodel,Flooring,Garage Doors,Home Warranty,HVAC" | split: "," %}

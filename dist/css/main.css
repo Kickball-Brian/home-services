@@ -174,18 +174,7 @@ button:focus-visible,
   gap: .5rem;
 }
 .navbar_brand:hover { text-decoration: none; }
-.navbar_brand img { display: block; height: var(--nav-h); width: auto; }
-.navbar_brand_icon {
-  width: 26px; height: 26px;
-  color: var(--c-brand);
-  flex-shrink: 0;
-}
-.navbar_brand_text {
-  color: var(--c-text);
-  font-weight: 800;
-  font-size: 1.2rem;
-  letter-spacing: -0.02em;
-}
+.navbar_brand img { display: block; height: 38px; width: auto; }
 .navbar_right {
   display: flex;
   align-items: center;
@@ -228,6 +217,7 @@ button:focus-visible,
 }
 @media (max-width: 600px) {
   :root { --nav-h: 40px; }
+  .navbar_brand img { height: 30px; }
   .navbar_book { padding: 0 1.1rem; font-size: .8rem; }
 }
 
@@ -419,6 +409,22 @@ button:focus-visible,
   stroke: var(--c-brand-mid);
   stroke-width: 2;
 }
+
+.zip-error { color: #8a1c1c; font-size: .85rem; font-weight: 600; margin: -.75rem 0 1rem; }
+.zip-input[aria-invalid="true"] { outline: 2px solid #b42318; outline-offset: 1px; }
+.hero-card-back {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 1rem;
+  font: inherit;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--c-brand-mid);
+  cursor: pointer;
+}
+.hero-card-back:hover { text-decoration: underline; }
+.hero-card-form #ll-form { min-height: 120px; }
 
 @media (max-width: 900px) {
   .hero-content {
@@ -1798,8 +1804,7 @@ p.lead { font-size: 1.05rem; color: var(--c-muted); line-height: 1.7; }
 }
 .footer_brand { display: inline-flex; align-items: center; gap: .5rem; }
 .footer_brand:hover { text-decoration: none; }
-.footer_brand_icon { width: 26px; height: 26px; color: var(--c-brand); flex-shrink: 0; }
-.footer_brand_text { color: var(--c-text); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; }
+.footer_brand img { display: block; height: 44px; width: auto; }
 .footer_about p { margin: 1rem 0 0; max-width: 26rem; color: var(--c-text); }
 .footer_col h3 {
   font-size: 1.1rem;

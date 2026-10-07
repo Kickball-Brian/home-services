@@ -109,21 +109,74 @@
     });
   }
 
-  // ── Hero ZIP lookup ─────────────────────────────────
+  // ── Hero ZIP lookup → lead form ─────────────────────
+  function selectedServices() {
+    var names = [];
+    var pill = document.querySelector('.service-pill.active');
+    if (pill) names.push(pill.textContent.trim());
+    document.querySelectorAll('.service-card[aria-pressed="true"]').forEach(function (c) {
+      var n = c.querySelector('h3').textContent.trim();
+      if (names.indexOf(n) === -1) names.push(n);
+    });
+    return names;
+  }
+
+  function prefillZip(zip) {
+    var tries = 0;
+    var timer = setInterval(function () {
+      var field = document.querySelector('#ll-form input[name*="zip" i], #ll-form input[id*="zip" i]');
+      if (field && !field.value) {
+        field.value = zip;
+        field.dispatchEvent(new Event('input', { bubbles: true }));
+        field.dispatchEvent(new Event('change', { bubbles: true }));
+        clearInterval(timer);
+      } else if (++tries > 40) {
+        clearInterval(timer);
+      }
+    }, 250);
+  }
+
   function initZipForm() {
     var btn   = document.querySelector('.zip-btn');
     var input = document.querySelector('.zip-input');
-    if (!btn || !input) return;
+    var start = document.querySelector('.hero-card-start');
+    var form  = document.querySelector('.hero-card-form');
+    var error = document.getElementById('zip-error');
+    var back  = document.querySelector('.hero-card-back');
+    if (!btn || !input || !start || !form) return;
 
-    btn.addEventListener('click', function () {
+    function start_() {
       var zip = input.value.trim();
       if (!/^\d{5}$/.test(zip)) {
         input.setAttribute('aria-invalid', 'true');
+        if (error) error.hidden = false;
         input.focus();
         return;
       }
       input.removeAttribute('aria-invalid');
-      // TODO: wire to lead-routing endpoint once available.
+      if (error) error.hidden = true;
+
+      try {
+        var params = JSON.parse(localStorage.getItem('params') || '{}');
+        params.zip = zip;
+        params.service = selectedServices().join(', ');
+        localStorage.setItem('params', JSON.stringify(params));
+      } catch (e) {}
+
+      start.hidden = true;
+      form.hidden = false;
+      prefillZip(zip);
+      form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    btn.addEventListener('click', start_);
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); start_(); }
+    });
+    if (back) back.addEventListener('click', function () {
+      form.hidden = true;
+      start.hidden = false;
+      input.focus();
     });
   }
 

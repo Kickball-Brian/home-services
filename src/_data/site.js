@@ -24,4 +24,8 @@ if (process.env.SITE_ENV === "staging") {
   site.productionUrl = site.url;
 }
 
+// Appended to CSS/JS URLs so a new deploy is never served from the
+// year-long immutable browser cache set in netlify.toml.
+site.buildId = (process.env.COMMIT_REF || Date.now().toString(36)).slice(0, 10);
+
 module.exports = site;

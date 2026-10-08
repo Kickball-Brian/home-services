@@ -327,72 +327,6 @@ button:focus-visible,
   font-size: .92rem;
   margin-bottom: 1.5rem;
 }
-.zip-input-group {
-  display: flex;
-  gap: .6rem;
-  margin-bottom: 1.5rem;
-}
-.zip-input {
-  flex: 1;
-  min-width: 0;
-  border: none;
-  border-radius: var(--r-md);
-  padding: .9rem 1rem;
-  font-size: .95rem;
-  font-family: inherit;
-  color: var(--c-text);
-  background: #fff;
-}
-.zip-input:focus { outline: 2px solid var(--c-brand-mid); outline-offset: 1px; }
-.zip-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: .4rem;
-  border: none;
-  border-radius: var(--r-md);
-  padding: .9rem 1.25rem;
-  background: var(--c-brand-mid);
-  color: #fff;
-  font-weight: 700;
-  font-size: .9rem;
-  font-family: inherit;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: background .2s var(--ease);
-}
-.zip-btn:hover { background: var(--c-dark); }
-.service-picker-label {
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: rgba(20,22,14,.65);
-  margin-bottom: .75rem;
-}
-.service-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem;
-  margin-bottom: 1.5rem;
-}
-.service-pill {
-  border: 1px solid rgba(20,22,14,.15);
-  border-radius: var(--r-full);
-  padding: .5rem 1rem;
-  background: rgba(255,255,255,.55);
-  color: var(--c-dark);
-  font-size: .82rem;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  transition: background .15s var(--ease), color .15s var(--ease);
-}
-.service-pill:hover { background: rgba(255,255,255,.85); }
-.service-pill.active {
-  background: var(--c-dark);
-  color: #fff;
-  border-color: var(--c-dark);
-}
 .hero-card-footer {
   display: flex;
   align-items: center;
@@ -410,21 +344,6 @@ button:focus-visible,
   stroke-width: 2;
 }
 
-.zip-error { color: #8a1c1c; font-size: .85rem; font-weight: 600; margin: -.75rem 0 1rem; }
-.zip-input[aria-invalid="true"] { outline: 2px solid #b42318; outline-offset: 1px; }
-.hero-card-back {
-  background: none;
-  border: none;
-  padding: 0;
-  margin-bottom: 1rem;
-  font: inherit;
-  font-size: .85rem;
-  font-weight: 600;
-  color: var(--c-brand-mid);
-  cursor: pointer;
-}
-.hero-card-back:hover { text-decoration: underline; }
-.hero-card-form #ll-form { min-height: 120px; }
 
 @media (max-width: 900px) {
   .hero-content {
@@ -435,7 +354,6 @@ button:focus-visible,
 }
 @media (max-width: 600px) {
   .hero-content { gap: 2rem; padding: 2.5rem 1.25rem; }
-  .zip-input-group { flex-direction: column; }
 }
 
 /* ── Services ticker ─────────────────────────────── */
@@ -2074,3 +1992,106 @@ p.lead { font-size: 1.05rem; color: var(--c-muted); line-height: 1.7; }
 .legal-prose p { margin: 0 0 1rem; }
 .legal-prose a { color: var(--c-dark); text-decoration: underline; }
 .legal-prose a:hover { opacity: .7; }
+
+/* ── Bootstrap collision guard ───────────────────────────────────────
+   The lead-form platform injects Bootstrap on the homepage, and Bootstrap
+   also defines .navbar and .container. Without these, the navbar loses its
+   sticky position and wraps on phones, and container widths change. */
+body .navbar { position: sticky; display: block; padding: 0; }
+body .navbar > .container.navbar_inner { display: flex; flex-wrap: nowrap; padding: .9rem 1.5rem; }
+body .container { max-width: var(--max); padding-left: 1.5rem; padding-right: 1.5rem; }
+body .container.narrow { max-width: var(--max-narrow); }
+
+/* ── Lead form (platform markup) inside the hero card ───────────── */
+.hero-card #ll-form { font-family: inherit; color: var(--c-dark); }
+.hero-card #ll-form .card-body { padding: 0; background: transparent; border: 0; }
+.hero-card #ll-form .row { margin: 0 0 1rem; --bs-gutter-x: 0; }
+.hero-card #ll-form .row > * { padding-left: 0; padding-right: 0; }
+.hero-card #ll-form .form-label {
+  display: block;
+  margin: 0 0 .5rem;
+  color: rgba(20,22,14,.65) !important;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.hero-card #ll-form .form-label sup { color: #b42318; }
+.hero-card #ll-form .form-control,
+.hero-card #ll-form .form-select {
+  border: 2px solid transparent;
+  border-radius: var(--r-md);
+  padding: .9rem 1rem;
+  background-color: #fff;
+  color: var(--c-text);
+  font-family: inherit;
+  font-size: .95rem;
+  box-shadow: none;
+}
+.hero-card #ll-form .form-control:focus,
+.hero-card #ll-form .form-select:focus { border-color: var(--c-brand-mid); box-shadow: none; }
+.hero-card #ll-form .form-control.is-valid { border-color: var(--c-brand); }
+.hero-card #ll-form .form-control.is-invalid { border-color: #b42318; }
+.hero-card #ll-form .invalid-feedback { margin-top: .4rem; color: #8a1c1c; font-size: .8rem; font-weight: 600; }
+.hero-card #ll-form .iti { width: 100%; }
+
+/* Service radios as pills, matching the hero's service picker */
+.hero-card #ll-form .service-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 0 !important;
+  text-align: left !important;
+}
+.hero-card #ll-form .service-wrapper label.btn {
+  display: inline-flex;
+  width: auto;
+  margin: 0 !important;
+  border: 1px solid rgba(20,22,14,.15);
+  background: rgba(255,255,255,.55);
+  color: var(--c-dark);
+  font-weight: 600;
+  box-shadow: none;
+}
+/* The platform stylesheet forces these with a more specific selector. */
+html body .hero-card #ll-form .service-wrapper label.btn.btn-light-document.btn-outline-filter {
+  padding: .5rem 1rem !important;
+  border-radius: var(--r-full) !important;
+  font-size: .82rem !important;
+  line-height: 1.4 !important;
+}
+.hero-card #ll-form .service-wrapper label.btn:hover { background: rgba(255,255,255,.85); }
+.hero-card #ll-form .service-wrapper .btn-check:checked + label.btn {
+  background: var(--c-dark);
+  border-color: var(--c-dark);
+  color: #fff;
+}
+.hero-card #ll-form .service-wrapper .btn-check:focus-visible + label.btn {
+  outline: 3px solid var(--c-dark);
+  outline-offset: 2px;
+}
+
+/* Submit, progress, back link, consent text */
+.hero-card #ll-form .form-group > div[style] { width: 100% !important; }
+.hero-card #ll-form #submit {
+  width: 100%;
+  margin-top: .5rem;
+  padding: .95rem 1.5rem;
+  border: 0;
+  border-radius: var(--r-md);
+  background: var(--c-brand-mid);
+  color: #fff;
+  font-family: inherit;
+  font-size: .95rem;
+  font-weight: 700;
+  transition: background .2s var(--ease);
+}
+.hero-card #ll-form #submit:hover:not(:disabled) { background: var(--c-dark); }
+.hero-card #ll-form #submit:disabled { opacity: .6; }
+.hero-card #ll-form .progress { height: 6px; margin-bottom: 1rem; border-radius: var(--r-full); background: rgba(20,22,14,.12); }
+.hero-card #ll-form .progress-bar { background-color: var(--c-brand-mid) !important; font-size: 0; }
+.hero-card #ll-form #back-button { margin-bottom: .75rem; font-size: .85rem; }
+.hero-card #ll-form .tcpa { margin-top: 1rem; color: rgba(20,22,14,.7); font-size: .72rem; line-height: 1.5; }
+.hero-card #ll-form .tcpa a { color: inherit; text-decoration: underline; }
+.hero-card #ll-form .ll_sec_desc:empty,
+.hero-card #ll-form #back-button:empty { display: none; }

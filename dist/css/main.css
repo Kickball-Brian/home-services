@@ -2005,8 +2005,7 @@ body .container.narrow { max-width: var(--max-narrow); }
 /* ── Lead form (platform markup) inside the hero card ───────────── */
 .hero-card #ll-form { font-family: inherit; color: var(--c-dark); }
 .hero-card #ll-form .card-body { padding: 0; background: transparent; border: 0; }
-.hero-card #ll-form .row { margin: 0 0 1rem; --bs-gutter-x: 0; }
-.hero-card #ll-form .row > * { padding-left: 0; padding-right: 0; }
+.hero-card #ll-form .row { margin-bottom: 1rem; --bs-gutter-x: 1rem; --bs-gutter-y: 1rem; }
 .hero-card #ll-form .form-label {
   display: block;
   margin: 0 0 .5rem;
@@ -2019,7 +2018,7 @@ body .container.narrow { max-width: var(--max-narrow); }
 .hero-card #ll-form .form-label sup { color: #b42318; }
 .hero-card #ll-form .form-control,
 .hero-card #ll-form .form-select {
-  border: 2px solid transparent;
+  border: 2px solid var(--c-brand);
   border-radius: var(--r-md);
   padding: .9rem 1rem;
   background-color: #fff;

@@ -414,6 +414,7 @@ body.is-home .navbar:not(.is-scrolled) .navbar_book { background: #fff; color: v
 
 /* ── Services grid ───────────────────────────────── */
 .services-section {
+  overflow: hidden;
   background: var(--c-alt);
   padding: 5rem 0 5.5rem;
 }
@@ -497,17 +498,27 @@ body.is-home .navbar:not(.is-scrolled) .navbar_book { background: #fff; color: v
   color: var(--c-text);
 }
 
-/* Fade up as each element scrolls into view */
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(32px); }
+/* Entrance animations on scroll: each element travels its own full height
+   (or width) while fading in, 1.25s, once, as it enters the viewport. */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translate3d(0, 100%, 0); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes fade-in-left {
+  from { opacity: 0; transform: translate3d(-100%, 0, 0); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes fade-in-right {
+  from { opacity: 0; transform: translate3d(100%, 0, 0); }
   to   { opacity: 1; transform: none; }
 }
 .js .rise { opacity: 0; }
 .js .rise.is-visible {
   opacity: 1;
-  animation: fade-up .75s var(--ease) backwards;
-  animation-delay: calc(var(--i, 0) * 90ms);
+  animation: fade-in-up 1.25s ease backwards;
 }
+.js .rise--left.is-visible  { animation-name: fade-in-left; }
+.js .rise--right.is-visible { animation-name: fade-in-right; }
 
 @media (max-width: 1000px) {
   .services-grid { grid-template-columns: repeat(3, 1fr); }

@@ -11,6 +11,7 @@
   {% assign _url = _canonical %}
   {% assign _robots = robots | default: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" %}
 
+  <script>document.documentElement.classList.add('js')</script>
   <title>{{ _t }}</title>
   <meta name="description" content="{{ _d }}">
   <meta name="robots" content="{% if site.staging %}noindex, follow{% elsif site.indexable %}{{ _robots }}{% else %}noindex, nofollow{% endif %}">

@@ -137,8 +137,18 @@
     }).mount('#faq-app');
   }
 
+  // ── Header turns solid after scrolling ─────────────
+  function initNavbarScroll() {
+    var nav = document.querySelector('.navbar');
+    if (!nav) return;
+    function update() { nav.classList.toggle('is-scrolled', window.scrollY > 40); }
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  }
+
   // ── Init ──────────────────────────────────────────
   function init() {
+    initNavbarScroll();
     initScrollReveal();
     initStatCounters();
     initLLFormProgress();

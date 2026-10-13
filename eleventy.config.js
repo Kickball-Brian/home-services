@@ -33,6 +33,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addWatchTarget("./css/");
   eleventyConfig.addWatchTarget("./js/");
+  eleventyConfig.addWatchTarget("./images/services/");
   eleventyConfig.addWatchTarget("./phone-config.js");
 
   return {

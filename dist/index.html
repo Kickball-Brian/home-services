@@ -39,7 +39,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/css/main.css?v=mv12zu0w">
+  <link rel="stylesheet" href="/css/main.css?v=mv6zx7cd">
 
   <script type="application/ld+json">
   {
@@ -77,21 +77,29 @@
 
   <nav class="navbar" aria-label="Main">
   <div class="container navbar_inner">
+    <a class="navbar_quote" href="tel:+18005550199" data-dynamic-phone-tel>
+      <span class="navbar_quote_label">Get A Free Quote</span>
+      <span data-dynamic-phone>800-555-0199</span>
+    </a>
     <a href="/" class="navbar_brand" aria-label="ContractorLogic home">
-      <img src="/images/global/contractorlogic-logo-768.webp"
+      <img class="navbar_logo navbar_logo--dark"
+           src="/images/global/contractorlogic-logo-768.webp"
            srcset="/images/global/contractorlogic-logo-768.webp 768w, /images/global/contractorlogic-logo-1536.webp 1536w"
            sizes="260px"
            alt="ContractorLogic"
            width="768" height="112"
            fetchpriority="high">
+      
+      <img class="navbar_logo navbar_logo--light"
+           src="/images/global/contractorlogic-logo-white-1024.webp"
+           alt=""
+           width="1024" height="150">
+      
     </a>
-    <div class="navbar_right">
-      <a class="navbar_quote" href="tel:+18005550199" data-dynamic-phone-tel>
-        <span class="navbar_quote_label">Get A Free Quote</span>
-        <span data-dynamic-phone>800-555-0199</span>
-      </a>
-      <a class="navbar_book" href="/#quote">Book Now</a>
-    </div>
+    <a class="navbar_book" href="/#quote">
+      <span>Book Now</span>
+      <span class="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+    </a>
   </div>
 </nav>
 
@@ -366,7 +374,7 @@
         <h2>Are You a Home Service Contractor?</h2>
         <p>Join our growing network of trusted professionals. Get matched with homeowners in your area who are ready to hire, with no cold calling and no chasing leads.</p>
       </div>
-      <a href="#" class="pill-btn pill-btn--green">Join as a Pro &rarr;</a>
+      <a href="#" class="pill-btn pill-btn--green"><span>Join as a Pro</span> <span class="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -377,7 +385,7 @@
     <div class="cta-inner">
       <h2>Your Next Home Project Starts Here</h2>
       <p>Join over 500,000 homeowners who've found their perfect contractor through ContractorLogic.</p>
-      <a href="#quote" class="pill-btn pill-btn--dark">Find My Contractor &rarr;</a>
+      <a href="#quote" class="pill-btn pill-btn--dark"><span>Find My Contractor</span> <span class="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -432,8 +440,8 @@
 </footer>
 
 
-  <script src="/phone-config.js?v=mv12zu0w"></script>
+  <script src="/phone-config.js?v=mv6zx7cd"></script>
   <script src="/js/vue.global.prod.js"></script>
-  <script src="/js/app.js?v=mv12zu0w"></script>
+  <script src="/js/app.js?v=mv6zx7cd"></script>
 </body>
 </html>

@@ -1,19 +1,27 @@
 <nav class="navbar" aria-label="Main">
   <div class="container navbar_inner">
+    <a class="navbar_quote" href="tel:+1{{ site.defaultPhone }}" data-dynamic-phone-tel>
+      <span class="navbar_quote_label">Get A Free Quote</span>
+      <span data-dynamic-phone>{{ site.defaultPhoneFormatted }}</span>
+    </a>
     <a href="/" class="navbar_brand" aria-label="{{ site.name }} home">
-      <img src="/images/global/contractorlogic-logo-768.webp"
+      <img class="navbar_logo navbar_logo--dark"
+           src="/images/global/contractorlogic-logo-768.webp"
            srcset="/images/global/contractorlogic-logo-768.webp 768w, /images/global/contractorlogic-logo-1536.webp 1536w"
            sizes="260px"
            alt="{{ site.name }}"
            width="768" height="112"
            fetchpriority="high">
+      {% if bodyClass == "is-home" %}
+      <img class="navbar_logo navbar_logo--light"
+           src="/images/global/contractorlogic-logo-white-1024.webp"
+           alt=""
+           width="1024" height="150">
+      {% endif %}
     </a>
-    <div class="navbar_right">
-      <a class="navbar_quote" href="tel:+1{{ site.defaultPhone }}" data-dynamic-phone-tel>
-        <span class="navbar_quote_label">Get A Free Quote</span>
-        <span data-dynamic-phone>{{ site.defaultPhoneFormatted }}</span>
-      </a>
-      <a class="navbar_book" href="/#quote">Book Now</a>
-    </div>
+    <a class="navbar_book" href="/#quote">
+      <span>Book Now</span>
+      <span class="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+    </a>
   </div>
 </nav>

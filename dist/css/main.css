@@ -160,27 +160,21 @@ button:focus-visible,
   top: 0;
   z-index: 100;
   border-bottom: 1px solid var(--c-line);
+  transition: background .25s var(--ease), border-color .25s var(--ease);
 }
 .navbar_inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
-  padding: .9rem 1.5rem;
+  padding: .8rem 1.5rem;
   gap: 1.5rem;
 }
-.navbar_brand {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-}
+.navbar_brand { justify-self: center; display: inline-flex; align-items: center; }
 .navbar_brand:hover { text-decoration: none; }
-.navbar_brand img { display: block; height: 38px; width: auto; }
-.navbar_right {
-  display: flex;
-  align-items: center;
-  gap: 1.75rem;
-}
+.navbar_logo { display: block; height: 38px; width: auto; }
+.navbar_logo--light { display: none; }
 .navbar_quote {
+  justify-self: start;
   display: inline-flex;
   align-items: baseline;
   gap: .4rem;
@@ -192,33 +186,55 @@ button:focus-visible,
 .navbar_quote:hover { text-decoration: none; color: var(--c-brand) !important; }
 .navbar_quote_label { font-weight: 600; }
 .navbar_book {
+  justify-self: end;
   display: inline-flex;
   align-items: center;
+  gap: .9rem;
+  height: var(--nav-h);
+  padding: 0 .4rem 0 1.4rem;
+  border-radius: var(--r-full);
   background: var(--c-dark);
   color: #fff !important;
-  height: var(--nav-h);
-  padding: 0 1.5rem;
-  border-radius: var(--r-full);
   font-weight: 700;
-  font-size: .85rem;
-  letter-spacing: .02em;
+  font-size: .8rem;
+  letter-spacing: .05em;
   text-transform: uppercase;
   white-space: nowrap;
-  transition: background .2s var(--ease), transform .15s var(--ease);
+  transition: background .2s var(--ease), color .2s var(--ease);
 }
-.navbar_book:hover {
-  background: var(--c-brand-mid);
-  text-decoration: none;
-  transform: translateY(-1px);
+.navbar_book:hover { text-decoration: none; background: var(--c-brand-mid); }
+
+/* Arrow tile used on the pill buttons */
+.btn-arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem; height: 2rem;
+  border-radius: 10px;
+  background: var(--c-brand);
+  color: #fff;
+  flex-shrink: 0;
+  transition: transform .2s var(--ease);
 }
+.btn-arrow svg { width: 14px; height: 14px; }
+a:hover > .btn-arrow { transform: rotate(45deg); }
+
+/* Homepage: header floats over the hero, then turns solid after scrolling */
+body.is-home .navbar { position: fixed; left: 0; right: 0; top: 0; }
+body.is-home .navbar:not(.is-scrolled) { background: transparent; border-bottom-color: transparent; }
+body.is-home .navbar:not(.is-scrolled) .navbar_logo--dark { display: none; }
+body.is-home .navbar:not(.is-scrolled) .navbar_logo--light { display: block; height: 38px; width: auto; }
+body.is-home .navbar:not(.is-scrolled) .navbar_quote { color: #fff !important; }
+body.is-home .navbar:not(.is-scrolled) .navbar_book { background: #fff; color: var(--c-dark) !important; }
 
 @media (max-width: 860px) {
+  .navbar_inner { grid-template-columns: 1fr auto; }
+  .navbar_brand { justify-self: start; }
   .navbar_quote { display: none; }
 }
 @media (max-width: 600px) {
   :root { --nav-h: 40px; }
-  .navbar_brand img { height: 30px; }
-  .navbar_book { padding: 0 1.1rem; font-size: .8rem; }
+  .navbar_logo, body.is-home .navbar:not(.is-scrolled) .navbar_logo--light { height: 30px; }
+  .navbar_book { padding: 0 .35rem 0 1.1rem; gap: .65rem; font-size: .75rem; }
 }
 
 /* ── Hero ────────────────────────────────────────── */
@@ -254,7 +270,7 @@ button:focus-visible,
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: 3rem;
-  padding: 5.5rem 1.5rem 5.5rem;
+  padding: 8.5rem 1.5rem 5.5rem;
   align-items: center;
   max-width: var(--max);
   margin: 0 auto;
@@ -348,12 +364,12 @@ button:focus-visible,
 @media (max-width: 900px) {
   .hero-content {
     grid-template-columns: 1fr;
-    padding: 3.5rem 1.5rem;
+    padding: 6.5rem 1.5rem 3.5rem;
   }
   .hero-left > p { max-width: 100%; }
 }
 @media (max-width: 600px) {
-  .hero-content { gap: 2rem; padding: 2.5rem 1.25rem; }
+  .hero-content { gap: 2rem; padding: 6rem 1.25rem 2.5rem; }
 }
 
 /* ── Services ticker ─────────────────────────────── */
@@ -407,7 +423,8 @@ button:focus-visible,
   font-size: clamp(2rem, 4vw, 2.75rem);
   font-weight: 700;
   color: var(--c-text);
-  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  letter-spacing: .01em;
   margin-bottom: 0;
 }
 .section-subtitle {
@@ -428,7 +445,7 @@ button:focus-visible,
   padding: 1.75rem 1rem 1.5rem;
   background: #fff;
   border: 2px solid transparent;
-  border-radius: var(--r-lg);
+  border-radius: var(--r-xl);
   box-shadow: var(--shadow-xs);
   font-family: inherit;
   cursor: pointer;
@@ -449,6 +466,7 @@ button:focus-visible,
   justify-content: center;
 }
 .service-icon svg { width: 24px; height: 24px; }
+.service-icon img { width: 36px; height: 36px; object-fit: contain; }
 .service-card h3 {
   font-family: var(--font-display);
   font-size: .85rem;
@@ -558,23 +576,22 @@ button:focus-visible,
 .pill-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 1rem 2rem;
+  gap: 1rem;
+  padding: .4rem .4rem .4rem 1.7rem;
   border-radius: var(--r-full);
-  font-size: .9rem;
+  font-size: .85rem;
   font-weight: 700;
+  letter-spacing: .04em;
   white-space: nowrap;
   color: #fff !important;
-  transition: background .2s var(--ease), transform .15s var(--ease);
+  transition: background .2s var(--ease);
 }
-.pill-btn:hover { text-decoration: none; transform: translateY(-1px); }
+.pill-btn:hover { text-decoration: none; }
+.pill-btn .btn-arrow { width: 2.4rem; height: 2.4rem; }
 .pill-btn--green { background: var(--c-brand); }
-.pill-btn--green:hover { background: var(--c-brand-light); }
-.pill-btn--dark {
-  background: var(--c-dark);
-  text-transform: uppercase;
-  letter-spacing: .02em;
-}
+.pill-btn--green .btn-arrow { background: var(--c-dark); }
+.pill-btn--green:hover { background: var(--c-brand-mid); }
+.pill-btn--dark { background: var(--c-dark); text-transform: uppercase; }
 .pill-btn--dark:hover { background: #000; }
 
 .contractor-section {
@@ -595,7 +612,8 @@ button:focus-visible,
   font-weight: 700;
   color: #fff;
   margin-bottom: .75rem;
-  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  letter-spacing: .01em;
 }
 .contractor-text p {
   color: rgba(255,255,255,.78);
@@ -615,7 +633,8 @@ button:focus-visible,
   font-weight: 700;
   color: var(--c-dark);
   margin-bottom: .75rem;
-  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  letter-spacing: .01em;
 }
 .cta-inner p { color: var(--c-dark); font-size: 1rem; margin-bottom: 2rem; }
 
@@ -1998,7 +2017,7 @@ p.lead { font-size: 1.05rem; color: var(--c-muted); line-height: 1.7; }
    also defines .navbar and .container. Without these, the navbar loses its
    sticky position and wraps on phones, and container widths change. */
 body .navbar { position: sticky; display: block; padding: 0; }
-body .navbar > .container.navbar_inner { display: flex; flex-wrap: nowrap; padding: .9rem 1.5rem; }
+body .navbar > .container.navbar_inner { display: grid; padding: .8rem 1.5rem; }
 body .container { max-width: var(--max); padding-left: 1.5rem; padding-right: 1.5rem; }
 body .container.narrow { max-width: var(--max-narrow); }
 

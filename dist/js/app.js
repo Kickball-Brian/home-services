@@ -165,11 +165,65 @@
     els.forEach(function (el) { observer.observe(el); });
   }
 
+  // ── Lead form: service dropdown → multi-select pills ──
+  // The platform renders a hidden <select multiple> plus a dropdown whose rows
+  // do the real selecting. Pills click those rows, so validation, the platform's
+  // onchange handler and the submitted values all keep working.
+  function enhanceServiceField(form) {
+    var wrap = form.querySelector('.js-bs-select-dropdown:not([data-pills])');
+    if (!wrap) return;
+    var select = wrap.querySelector('select[multiple]');
+    var rows = wrap.querySelectorAll('.dropdown-menu .dropdown-item[data-index]');
+    if (!select || !rows.length) return;
+
+    var group = document.createElement('div');
+    group.className = 'service-pills';
+    group.setAttribute('role', 'group');
+    group.setAttribute('aria-label', 'Select one or more services');
+
+    function sync() {
+      Array.prototype.forEach.call(group.children, function (pill, i) {
+        pill.setAttribute('aria-pressed', select.options[i] && select.options[i].selected ? 'true' : 'false');
+      });
+    }
+
+    Array.prototype.forEach.call(select.options, function (opt, i) {
+      var pill = document.createElement('button');
+      pill.type = 'button';
+      pill.className = 'service-pill';
+      pill.textContent = opt.text;
+      pill.setAttribute('aria-pressed', 'false');
+      pill.addEventListener('click', function () {
+        if (rows[i]) rows[i].click();
+        setTimeout(sync, 0);
+      });
+      group.appendChild(pill);
+    });
+
+    wrap.setAttribute('data-pills', '');
+    wrap.parentNode.insertBefore(group, wrap.nextSibling);
+    select.addEventListener('change', sync);
+    sync();
+  }
+
+  function initServicePills() {
+    var form = document.getElementById('ll-form');
+    if (!form) return;
+    var queued = false;
+    new MutationObserver(function () {
+      if (queued) return;
+      queued = true;
+      setTimeout(function () { queued = false; enhanceServiceField(form); }, 50);
+    }).observe(form, { childList: true, subtree: true });
+    enhanceServiceField(form);
+  }
+
   // ── Init ──────────────────────────────────────────
   function init() {
     initNavbarScroll();
     initScrollReveal();
     initRise();
+    initServicePills();
     initStatCounters();
     initLLFormProgress();
     initServiceCards();

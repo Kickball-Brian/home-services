@@ -87,13 +87,61 @@
   }
 
   // ── Services grid (multi-select) ───────────────────
+  // ── Shared service selection: cards ↔ lead form ────
+  // `picked` holds the chosen service names. Cards toggle it, the lead form's
+  // pills write back to it, and the bottom CTA reports it.
+  var picked = [];
+  var formField = null; // { select, rows, sync } once the lead form has loaded
+
+  function renderPicked() {
+    document.querySelectorAll('.service-card').forEach(function (card) {
+      var name = card.querySelector('h3').textContent.trim();
+      card.setAttribute('aria-pressed', picked.indexOf(name) > -1 ? 'true' : 'false');
+    });
+    var cta = document.querySelector('.services-cta');
+    if (!cta) return;
+    var n = picked.length;
+    cta.hidden = n === 0;
+    cta.querySelector('.services-cta_label').textContent =
+      'Get quotes for ' + (n === 1 ? 'this service' : 'these ' + n + ' services');
+  }
+
+  function applyPickedToForm() {
+    if (!formField) return;
+    Array.prototype.forEach.call(formField.select.options, function (opt, i) {
+      var want = picked.indexOf(opt.text.trim()) > -1;
+      if (opt.selected !== want && formField.rows[i]) formField.rows[i].click();
+    });
+    formField.sync();
+  }
+
+  function pickedFromForm() {
+    picked = Array.prototype.filter.call(formField.select.options, function (o) { return o.selected; })
+      .map(function (o) { return o.text.trim(); });
+  }
+
+  function goToForm() {
+    var hero = document.getElementById('quote');
+    if (hero) hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(function () {
+      var zip = document.querySelector('#ll-form #zip');
+      if (zip) zip.focus({ preventScroll: true });
+    }, 700);
+  }
+
   function initServiceCards() {
     document.querySelectorAll('.service-card').forEach(function (card) {
       card.addEventListener('click', function () {
-        var on = card.getAttribute('aria-pressed') === 'true';
-        card.setAttribute('aria-pressed', on ? 'false' : 'true');
+        var name = card.querySelector('h3').textContent.trim();
+        var i = picked.indexOf(name);
+        if (i > -1) picked.splice(i, 1); else picked.push(name);
+        renderPicked();
+        applyPickedToForm();
       });
     });
+    var btn = document.querySelector('.services-cta_btn');
+    if (btn) btn.addEventListener('click', goToForm);
+    renderPicked();
   }
 
   // ── FAQ accordion (Vue) ───────────────────────────
@@ -195,7 +243,7 @@
       pill.setAttribute('aria-pressed', 'false');
       pill.addEventListener('click', function () {
         if (rows[i]) rows[i].click();
-        setTimeout(sync, 0);
+        setTimeout(function () { sync(); pickedFromForm(); renderPicked(); }, 0);
       });
       group.appendChild(pill);
     });
@@ -204,6 +252,10 @@
     wrap.parentNode.insertBefore(group, wrap.nextSibling);
     select.addEventListener('change', sync);
     sync();
+
+    formField = { select: select, rows: rows, sync: sync };
+    if (picked.length) applyPickedToForm(); else pickedFromForm();
+    renderPicked();
   }
 
   function initServicePills() {

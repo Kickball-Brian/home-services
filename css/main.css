@@ -414,7 +414,7 @@ body.is-home .navbar:not(.is-scrolled) .navbar_book { background: #fff; color: v
 
 /* ── Services grid ───────────────────────────────── */
 .services-section {
-  overflow: hidden;
+  overflow: clip;
   background: var(--c-alt);
   padding: 5rem 0 5.5rem;
 }
@@ -496,6 +496,34 @@ body.is-home .navbar:not(.is-scrolled) .navbar_book { background: #fff; color: v
   letter-spacing: .06em;
   text-transform: uppercase;
   color: var(--c-text);
+}
+
+/* Selection CTA: stays at the bottom of the screen while the grid is in view */
+.services-cta {
+  position: sticky;
+  bottom: 1.25rem;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.services-cta[hidden] { display: none; }
+.services-cta:not([hidden]) { animation: cta-in .3s var(--ease); }
+.services-cta .pill-btn { box-shadow: var(--shadow-lg); }
+button.pill-btn { border: 0; font-family: inherit; cursor: pointer; }
+@media (max-width: 600px) {
+  .services-cta .pill-btn {
+    max-width: 100%;
+    gap: .7rem;
+    padding-left: 1.2rem;
+    font-size: .74rem;
+    white-space: normal;
+    text-align: left;
+  }
+}
+@keyframes cta-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
 }
 
 /* Entrance animations on scroll: each element travels its own full height

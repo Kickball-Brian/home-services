@@ -265,6 +265,13 @@
     renderPicked();
   }
 
+  // The platform's consent text links to /privacy-policy; this site's page is /privacy/.
+  function fixConsentLinks(form) {
+    form.querySelectorAll('a[href="/privacy-policy"], a[href="/privacy-policy/"]').forEach(function (a) {
+      a.setAttribute('href', '/privacy/');
+    });
+  }
+
   function initServicePills() {
     var form = document.getElementById('ll-form');
     if (!form) return;
@@ -272,9 +279,10 @@
     new MutationObserver(function () {
       if (queued) return;
       queued = true;
-      setTimeout(function () { queued = false; enhanceServiceField(form); }, 50);
+      setTimeout(function () { queued = false; enhanceServiceField(form); fixConsentLinks(form); }, 50);
     }).observe(form, { childList: true, subtree: true });
     enhanceServiceField(form);
+    fixConsentLinks(form);
   }
 
   // ── Init ──────────────────────────────────────────

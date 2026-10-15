@@ -23,16 +23,6 @@
     Cache-Control = "public, max-age=3600"
 
 [[redirects]]
-  from = "/privacy-policy"
-  to = "/privacy/"
-  status = 301
-
-[[redirects]]
-  from = "/privacy-policy/"
-  to = "/privacy/"
-  status = 301
-
-[[redirects]]
   from = "/*"
   to = "/404.html"
   status = 404

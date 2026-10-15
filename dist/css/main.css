@@ -2169,8 +2169,6 @@ body .container.narrow { max-width: var(--max-narrow); }
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 .hero-card #ll-form .service-pill:focus-visible { outline: 3px solid var(--c-dark); outline-offset: 2px; }
-.hero-card #ll-form .service-pills.is-invalid + .invalid-feedback,
-.hero-card #ll-form .js-bs-select-dropdown[data-pills] ~ .invalid-feedback { display: block; }
 
 /* Submit, progress, back link, consent text */
 .hero-card #ll-form .form-group > div[style] { width: 100% !important; }

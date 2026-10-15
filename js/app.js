@@ -233,6 +233,10 @@
       Array.prototype.forEach.call(group.children, function (pill, i) {
         pill.setAttribute('aria-pressed', select.options[i] && select.options[i].selected ? 'true' : 'false');
       });
+      // The platform flags the field after a failed submit but only its own
+      // dropdown clears that flag, so clear it once something is selected.
+      var msg = document.getElementById('validation_service');
+      if (msg && select.selectedOptions.length) msg.classList.remove('invalid-field');
     }
 
     Array.prototype.forEach.call(select.options, function (opt, i) {

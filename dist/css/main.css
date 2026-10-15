@@ -1172,6 +1172,12 @@ p.lead { font-size: 1.05rem; color: var(--c-muted); line-height: 1.7; }
   box-shadow: none !important;
 }
 
+/* The platform hides finished controls with inline display:none; the rule above
+   would otherwise force them back (e.g. Submit after "Thank you"). */
+#ll-form .btn[style*="display: none"],
+#ll-form button[style*="display: none"],
+#ll-form label.btn[style*="display: none"] { display: none !important; }
+
 /* Focus ring — applies everywhere */
 #ll-form .btn:focus,
 #ll-form .btn:focus-visible {
@@ -2210,5 +2216,37 @@ body .container.narrow { max-width: var(--max-narrow); }
 .hero-card #ll-form #back-button { margin-bottom: .75rem; font-size: .85rem; }
 .hero-card #ll-form .tcpa { margin-top: 1rem; color: rgba(20,22,14,.7); font-size: .72rem; line-height: 1.5; }
 .hero-card #ll-form .tcpa a { color: inherit; text-decoration: underline; }
+
+/* Consent checkbox on the contact step */
+.hero-card #ll-form .form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: .6rem;
+  min-height: 0;
+  padding-left: 0;
+  margin-top: 0;
+}
+.hero-card #ll-form .form-check-input {
+  flex: 0 0 auto;
+  float: none;
+  width: 1rem;
+  height: 1rem;
+  margin: .1rem 0 0;
+  border: 2px solid var(--c-brand);
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+.hero-card #ll-form .form-check-input:checked { background-color: var(--c-brand); border-color: var(--c-brand); }
+.hero-card #ll-form .form-check-input:focus { box-shadow: 0 0 0 3px rgba(79,122,51,.3); }
+.hero-card #ll-form .form-check-label {
+  color: rgba(20,22,14,.82);
+  font-size: 11px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.hero-card #ll-form .form-check-label a,
+.hero-card #ll-form #validation_home_agree_to_terms a { color: inherit; text-decoration: underline; }
+.hero-card #ll-form #validation_home_agree_to_terms { margin-top: .4rem; font-size: 11px; line-height: 1.5; }
 .hero-card #ll-form .ll_sec_desc:empty,
 .hero-card #ll-form #back-button:empty { display: none; }

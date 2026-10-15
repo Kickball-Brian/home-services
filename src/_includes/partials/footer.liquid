@@ -1,33 +1,46 @@
 <footer class="footer" role="contentinfo">
   <div class="container footer_inner">
 
-    <div class="footer_grid">
+    <div class="footer_top">
       <div class="footer_about">
         <a href="/" class="footer_brand" aria-label="{{ site.name }} home">
-          <img src="/images/global/contractorlogic-logo-768.webp"
-               srcset="/images/global/contractorlogic-logo-768.webp 768w, /images/global/contractorlogic-logo-1536.webp 1536w"
-               sizes="260px"
+          <img src="/images/global/contractorlogic-logo-white-1024.webp"
                alt="{{ site.name }}"
-               width="768" height="112"
+               width="1024" height="150"
                loading="lazy">
         </a>
         <p>{{ site.name }} matches homeowners with pre-screened local pros across the continental United States, for everything from home renovations to emergency restoration. Request a free quote today.</p>
       </div>
 
+      <div class="footer_contact">
+        <h3>Get In Touch</h3>
+        <a class="footer_big" href="tel:+1{{ site.defaultPhone }}" data-dynamic-phone-tel>
+          <span class="footer_label">Phone:</span>
+          <span data-dynamic-phone>{{ site.defaultPhoneFormatted }}</span>
+        </a>
+        <a class="footer_big" href="mailto:{{ site.email }}">
+          <span class="footer_label">Email:</span>
+          <span>{{ site.email }}</span>
+        </a>
+      </div>
+    </div>
+
+    <hr class="footer_divider" aria-hidden="true">
+
+    <div class="footer_mid">
       <div class="footer_col">
         <h3>Operating Hours</h3>
         {% for slot in site.hours %}
         <p>{{ slot.days }}: {{ slot.time }}</p>
         {% endfor %}
       </div>
-
-      <div class="footer_col">
-        <h3>Get In Touch</h3>
-        <p><a href="mailto:{{ site.email }}">Email: {{ site.email }}</a></p>
-        <p><a href="tel:+1{{ site.defaultPhone }}" data-dynamic-phone-tel>Phone: <span data-dynamic-phone>{{ site.defaultPhoneFormatted }}</span></a></p>
-        <a class="footer_quote" href="/#quote">Get Your Quote</a>
-      </div>
+      <a class="pill-btn pill-btn--green footer_quote" href="/#quote">
+        <span>Get Your Quote</span>
+        <span class="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
     </div>
+
+    <hr class="footer_divider" aria-hidden="true">
 
     <div class="footer_bottom">
       <p class="footer_copyright">&copy; {{ currentYear }} {{ site.copyrightHolder }}. All Rights Reserved.</p>

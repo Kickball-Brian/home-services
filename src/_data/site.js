@@ -5,7 +5,7 @@ const site = {
   url: "https://staging.contractorlogic.net/",
   productionUrl: "https://contractorlogic.net/",
   description: "Get matched with pre-screened, local home service professionals for any home project. Completely free, with no commitment required.",
-  email: "info@contractorlogic.com",
+  email: "info@emailagency.com",
   defaultPhone: "8005550199",
   defaultPhoneFormatted: "800-555-0199",
   address: { addressCountry: "US" },
